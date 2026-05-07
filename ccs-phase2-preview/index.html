@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cozy Candle Studio · Phase 2 V1.0 Reskin Preview</title>
+  <style>
+    :root {
+      --teal-bg: #1B4D6B;
+      --teal-dark: #102C40;
+      --amber: #F5A623;
+      --amber-hot: #FFC350;
+      --magenta: #E8528C;
+      --honey: #FFD43A;
+      --honey-hot: #FFEB82;
+      --mint: #7CDFB8;
+      --ink: #2A1B3D;
+      --ink-deep: #160E24;
+      --cream: #FCF4DC;
+      --rose: #F47484;
+      --violet: #6C50B4;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: linear-gradient(180deg, var(--teal-dark) 0%, var(--teal-bg) 60%, var(--ink) 100%);
+      color: var(--cream);
+      font-family: -apple-system, BlinkMacSystemFont, "Avenir Next", sans-serif;
+      min-height: 100vh;
+      padding: 40px 20px 80px;
+    }
+    .container { max-width: 1400px; margin: 0 auto; }
+    header {
+      text-align: center;
+      padding: 40px 20px 60px;
+      background: radial-gradient(ellipse at center, rgba(255,212,58,0.18), transparent 70%);
+      border-radius: 32px;
+      margin-bottom: 40px;
+    }
+    h1 {
+      font-size: 56px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: var(--honey);
+      text-shadow: 0 4px 20px rgba(245,166,35,0.3);
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      font-size: 22px;
+      color: var(--mint);
+      font-weight: 600;
+      letter-spacing: 4px;
+      margin-bottom: 24px;
+    }
+    .meta {
+      font-size: 14px;
+      color: var(--cream);
+      opacity: 0.7;
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .meta strong { color: var(--amber-hot); }
+    h2 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--cream);
+      border-left: 6px solid var(--amber);
+      padding-left: 16px;
+      margin: 60px 0 8px;
+    }
+    .section-meta {
+      color: var(--mint);
+      font-size: 14px;
+      padding-left: 22px;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+    .grid {
+      display: grid;
+      gap: 24px;
+    }
+    .stages-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .scents-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    .ui-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .anim-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .mascot-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .asc-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .phase1-grid { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+    .card {
+      background: rgba(22,14,36,0.8);
+      border: 2px solid rgba(245,166,35,0.25);
+      border-radius: 20px;
+      padding: 16px;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      overflow: hidden;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--amber);
+      box-shadow: 0 12px 36px rgba(245,166,35,0.25);
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      background: var(--ink-deep);
+    }
+    .card .label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--honey);
+      letter-spacing: 1px;
+      margin-top: 12px;
+      text-transform: uppercase;
+    }
+    .card .desc {
+      font-size: 12px;
+      color: var(--cream);
+      opacity: 0.7;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+    .scent-card .label, .mascot-card .label { text-align: center; }
+    .palette {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 24px;
+      background: rgba(22,14,36,0.6);
+      border-radius: 16px;
+      margin-bottom: 32px;
+    }
+    .swatch {
+      flex: 1;
+      min-width: 140px;
+      padding: 16px 12px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+    .swatch.teal { background: var(--teal-bg); color: var(--cream); }
+    .swatch.amber { background: var(--amber); color: var(--ink-deep); }
+    .swatch.magenta { background: var(--magenta); color: var(--cream); }
+    .swatch.honey { background: var(--honey); color: var(--ink-deep); }
+    .swatch.mint { background: var(--mint); color: var(--ink-deep); }
+    .swatch.ink { background: var(--ink); color: var(--cream); }
+    .badge-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 24px 0;
+    }
+    .badge {
+      background: var(--honey);
+      color: var(--ink-deep);
+      padding: 8px 20px;
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .badge.teal { background: var(--teal-bg); color: var(--cream); }
+    .badge.magenta { background: var(--magenta); color: var(--cream); }
+    .badge.mint { background: var(--mint); color: var(--ink-deep); }
+    .badge.violet { background: var(--violet); color: var(--cream); }
+    footer {
+      text-align: center;
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(245,166,35,0.2);
+      color: var(--cream);
+      opacity: 0.5;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>COZY CANDLE STUDIO</h1>
+      <div class="subtitle">PHASE 2 V1.0 RESKIN PREVIEW</div>
+      <div class="meta">
+        Saturated jewel-tone game-feel reskin — replaces utility-app v1 baseline.
+        <br><strong>Phase 1 acid test PASSED</strong> — &ldquo;tasarımlar guzel duruyor digerlerine oranla&rdquo; (BOSS, 2026-05-07T10:50).
+        <br>Indie-AAA tier benchmarked: Royal Match + Gardenscapes + Travel Town.
+        <br><strong>POUR &middot; MATCH &middot; SHINE</strong>
+      </div>
+      <div class="badge-row">
+        <span class="badge">PHASE 1 PASS</span>
+        <span class="badge teal">5 STAGES</span>
+        <span class="badge magenta">5 SCENTS</span>
+        <span class="badge mint">UI PACK</span>
+        <span class="badge">ANIMATION PACK</span>
+        <span class="badge violet">WICKLY MASCOT</span>
+        <span class="badge">ASC v2 6-PACK</span>
+      </div>
+    </header>
+
+    <h2>CCS-G Palette &middot; Saturated Jewel</h2>
+    <div class="section-meta">2x v1 saturation &middot; Cozy mood retained via warm rim-light + amber bloom</div>
+    <div class="palette">
+      <div class="swatch teal">TEAL BG<br>#1B4D6B</div>
+      <div class="swatch amber">AMBER<br>#F5A623</div>
+      <div class="swatch magenta">MAGENTA<br>#E8528C</div>
+      <div class="swatch honey">HONEY<br>#FFD43A</div>
+      <div class="swatch mint">MINT<br>#7CDFB8</div>
+      <div class="swatch ink">INK<br>#2A1B3D</div>
+    </div>
+
+    <h2>P2-1 &middot; 5 Stage Reskin</h2>
+    <div class="section-meta">Cinematic FG/MG/BG depth &middot; saturated jewel anchors &middot; always-on HUD &middot; Wickly mascot integration</div>
+    <div class="grid stages-grid">
+      <div class="card">
+        <img src="phase1-acid-test/04-acid-test-before-after-1290x2796.png" alt="Stage 1 Cottage Workshop V2 (Phase 1)">
+        <div class="label">Stage 1 &middot; Cottage Workshop V2</div>
+        <div class="desc">Phase 1 acid-test reskin. Night-teal sky &middot; arched window &middot; 3 jewel candles &middot; Wickly fox-spirit foreground.</div>
+      </div>
+      <div class="card">
+        <img src="stages/02-stage-boutique-shop-1290x2796.png" alt="Stage 2 Boutique Shop">
+        <div class="label">Stage 2 &middot; Boutique Shop</div>
+        <div class="desc">Magenta anchor &middot; striped awning &middot; storefront window display &middot; 5-jewel checkout counter &middot; Wickly greeter.</div>
+      </div>
+      <div class="card">
+        <img src="stages/03-stage-atelier-studio-1290x2796.png" alt="Stage 3 Atelier Studio">
+        <div class="label">Stage 3 &middot; Atelier Studio</div>
+        <div class="desc">Amber anchor &middot; sun-rays skylight &middot; pinned sketches &middot; drafting table with 5-pot blend kit &middot; Wickly artisan focused.</div>
+      </div>
+      <div class="card">
+        <img src="stages/04-stage-production-factory-1290x2796.png" alt="Stage 4 Production Factory">
+        <div class="label">Stage 4 &middot; Production Factory</div>
+        <div class="desc">Mint anchor &middot; smokestack silhouette &middot; pipe machinery &middot; 3 wax vats with bubbling &middot; conveyor belt &middot; Wickly hard-hat.</div>
+      </div>
+      <div class="card">
+        <img src="stages/05-stage-flagship-empire-1290x2796.png" alt="Stage 5 Flagship Empire">
+        <div class="label">Stage 5 &middot; Flagship Empire</div>
+        <div class="desc">Violet anchor &middot; city-skyline night &middot; glass facade &middot; tiered fountain centerpiece &middot; Wickly with crown.</div>
+      </div>
+    </div>
+
+    <h2>P2-2 &middot; 5 Scent Variant Sprites</h2>
+    <div class="section-meta">256x256 jewel-faceted jars &middot; HDR honey halo &middot; replaces utility V1 sprite pack</div>
+    <div class="grid scents-grid">
+      <div class="card scent-card">
+        <img src="scents/scent-vanilla-256.png" alt="Vanilla">
+        <div class="label">Vanilla</div>
+      </div>
+      <div class="card scent-card">
+        <img src="scents/scent-lavender-256.png" alt="Lavender">
+        <div class="label">Lavender</div>
+      </div>
+      <div class="card scent-card">
+        <img src="scents/scent-cinnamon-256.png" alt="Cinnamon">
+        <div class="label">Cinnamon</div>
+      </div>
+      <div class="card scent-card">
+        <img src="scents/scent-sandalwood-256.png" alt="Sandalwood">
+        <div class="label">Sandalwood</div>
+      </div>
+      <div class="card scent-card">
+        <img src="scents/scent-honey-256.png" alt="Honey">
+        <div class="label">Honey</div>
+      </div>
+    </div>
+
+    <h2>P2-3 &middot; UI Pack</h2>
+    <div class="section-meta">Buttons &middot; HUD modules &middot; modal &middot; transition cinematic &middot; reward-burst master &middot; matches coder Z3 commit hooks</div>
+    <div class="grid ui-grid">
+      <div class="card">
+        <img src="ui-pack/button-primary-600x180.png" alt="Primary Button">
+        <div class="label">Button &middot; Primary</div>
+        <div class="desc">Amber gradient &middot; honey halo &middot; 600x180 &middot; PLAY action.</div>
+      </div>
+      <div class="card">
+        <img src="ui-pack/button-secondary-600x180.png" alt="Secondary Button">
+        <div class="label">Button &middot; Secondary</div>
+        <div class="desc">Mint gradient &middot; subtle halo &middot; 600x180 &middot; CANCEL action.</div>
+      </div>
+      <div class="card">
+        <img src="ui-pack/button-disabled-600x180.png" alt="Disabled Button">
+        <div class="label">Button &middot; Disabled</div>
+        <div class="desc">Slate fill &middot; no halo &middot; 600x180 &middot; LOCKED state.</div>
+      </div>
+      <div class="card">
+        <img src="ui-pack/hud-top-banner-1290x240.png" alt="HUD Top">
+        <div class="label">HUD &middot; Top Banner</div>
+        <div class="desc">Level + stage name + objective &middot; 1290x240 &middot; ink-deep with amber stroke.</div>
+      </div>
+      <div class="card">
+        <img src="ui-pack/hud-bottom-bar-1290x240.png" alt="HUD Bottom">
+        <div class="label">HUD &middot; Bottom Bar</div>
+        <div class="desc">Coins / stars / lives / timer 4-cell &middot; 1290x240 &middot; per-cell color glow.</div>
+      </div>
+      <div class="card">
+        <img src="ui-pack/modal-stage-complete-1290x900.png" alt="Modal Overlay">
+        <div class="label">Modal &middot; Stage Complete</div>
+        <div class="desc">Magenta title bar &middot; 3 reward cells &middot; CTA &middot; 1290x900.</div>
+      </div>
+      <div class="card">
+        <img src="ui-pack/transition-cinematic-1290x600.png" alt="Transition">
+        <div class="label">Transition &middot; Stage Unlock</div>
+        <div class="desc">Radial wipe &middot; honey rays &middot; 1290x600.</div>
+      </div>
+      <div class="card">
+        <img src="ui-pack/reward-burst-registry-1290x1290.png" alt="Reward Burst">
+        <div class="label">Reward Burst &middot; Registry Master</div>
+        <div class="desc">22-ray radial &middot; 12 coin tokens &middot; LEVEL UP! &middot; 1290x1290.</div>
+      </div>
+    </div>
+
+    <h2>P2-4 &middot; Animation Pack</h2>
+    <div class="section-meta">4 states &times; 4-frame storyboards &middot; Lottie / SwiftUI native ready</div>
+    <div class="grid anim-grid">
+      <div class="card">
+        <img src="animation-pack/anim-01-idle-bob-1290x2796.png" alt="Idle">
+        <div class="label">Idle &middot; Bob 2s Loop</div>
+      </div>
+      <div class="card">
+        <img src="animation-pack/anim-02-pour-stream-1290x2796.png" alt="Pour">
+        <div class="label">Pour &middot; Stream Particles</div>
+      </div>
+      <div class="card">
+        <img src="animation-pack/anim-03-burst-radial-1290x2796.png" alt="Burst">
+        <div class="label">Burst &middot; Radial 14-Ray</div>
+      </div>
+      <div class="card">
+        <img src="animation-pack/anim-04-celebrate-shake-1290x2796.png" alt="Celebrate">
+        <div class="label">Celebrate &middot; Shake + Flash</div>
+      </div>
+    </div>
+
+    <h2>P2-5 &middot; Wickly Mascot Pack</h2>
+    <div class="section-meta">Master + 5 stage greeters + reward hero + 4 emotes</div>
+    <div class="grid mascot-grid">
+      <div class="card mascot-card">
+        <img src="mascot/wickly-master-600.png" alt="Wickly Master">
+        <div class="label">Master</div>
+      </div>
+      <div class="card mascot-card">
+        <img src="mascot/wickly-reward-hero-800.png" alt="Reward Hero">
+        <div class="label">Reward Hero</div>
+      </div>
+      <div class="card mascot-card">
+        <img src="mascot/wickly-greeter-cottage-400.png" alt="Greeter Cottage">
+        <div class="label">Greeter &middot; Cottage</div>
+      </div>
+      <div class="card mascot-card">
+        <img src="mascot/wickly-greeter-boutique-400.png" alt="Greeter Boutique">
+        <div class="label">Greeter &middot; Boutique</div>
+      </div>
+      <div class="card mascot-card">
+        <img src="mascot/wickly-greeter-atelier-400.png" alt="Greeter Atelier">
+        <div class="label">Greeter &middot; Atelier</div>
+      </div>
+      <div class="card mascot-card">
+        <img src="mascot/wickly-greeter-factory-400.png" alt="Greeter Factory">
+        <div class="label">Greeter &middot; Factory</div>
+      </div>
+      <div class="card mascot-card">
+        <img src="mascot/wickly-greeter-flagship-400.png" alt="Greeter Flagship">
+        <div class="label">Greeter &middot; Flagship</div>
+      </div>
+      <div class="card mascot-card">
+        <img src="mascot/wickly-emote-happy-256.png" alt="Emote Happy">
+        <div class="label">Emote &middot; Happy</div>
+      </div>
+      <div class="card mascot-card">
+        <img src="mascot/wickly-emote-surprised-256.png" alt="Emote Surprised">
+        <div class="label">Emote &middot; Surprised</div>
+      </div>
+      <div class="card mascot-card">
+        <img src="mascot/wickly-emote-focused-256.png" alt="Emote Focused">
+        <div class="label">Emote &middot; Focused</div>
+      </div>
+      <div class="card mascot-card">
+        <img src="mascot/wickly-emote-celebrate-256.png" alt="Emote Celebrate">
+        <div class="label">Emote &middot; Celebrate</div>
+      </div>
+    </div>
+
+    <h2>P2-6 &middot; Apple App Store Screenshots v2</h2>
+    <div class="section-meta">Replaces utility-app v1-final &middot; RM/GS/TT-grade game-feel &middot; T-21 Apple Featuring submission-ready</div>
+    <div class="grid asc-grid">
+      <div class="card">
+        <img src="asc-v2/ccs-asc-v2-01-hero-hook-1290x2796.png" alt="Hero Hook">
+        <div class="label">01 &middot; Hero Hook</div>
+        <div class="desc">Logo + tagline + Wickly + workshop + 4.9 rating row.</div>
+      </div>
+      <div class="card">
+        <img src="asc-v2/ccs-asc-v2-02-hero-pour-1290x2796.png" alt="Hero Pour">
+        <div class="label">02 &middot; Hero Pour</div>
+        <div class="desc">Cinematic pour mechanic &middot; pitcher stream &middot; HUD locked.</div>
+      </div>
+      <div class="card">
+        <img src="asc-v2/ccs-asc-v2-03-hero-scent-1290x2796.png" alt="Hero Scent">
+        <div class="label">03 &middot; Hero Scent</div>
+        <div class="desc">5 scent radial layout &middot; MATCH + MERGE marker.</div>
+      </div>
+      <div class="card">
+        <img src="asc-v2/ccs-asc-v2-04-hero-merge-1290x2796.png" alt="Hero Merge">
+        <div class="label">04 &middot; Hero Merge</div>
+        <div class="desc">3-tier merge ladder &middot; 300+ levels CTA.</div>
+      </div>
+      <div class="card">
+        <img src="asc-v2/ccs-asc-v2-05-hero-progression-1290x2796.png" alt="Hero Progression">
+        <div class="label">05 &middot; Hero Progression</div>
+        <div class="desc">5-stage empire ladder &middot; Cottage to Flagship.</div>
+      </div>
+      <div class="card">
+        <img src="asc-v2/ccs-asc-v2-06-hero-cta-1290x2796.png" alt="Hero CTA">
+        <div class="label">06 &middot; Hero CTA</div>
+        <div class="desc">Reward burst + Wickly + Get button + Day 1 Featuring badge.</div>
+      </div>
+    </div>
+
+    <h2>Phase 1 Acid Test Reference</h2>
+    <div class="section-meta">Diagnostic + benchmark + side-by-side &middot; basis for Phase 2</div>
+    <div class="grid phase1-grid">
+      <div class="card">
+        <img src="phase1-acid-test/02-benchmark-rm-gs-tt-moodboard-1290x2796.png" alt="Benchmark Moodboard">
+        <div class="label">Benchmark &middot; RM + GS + TT</div>
+        <div class="desc">Saturated palette + HUD + reward burst + animation states + mascot+iso depth reference.</div>
+      </div>
+      <div class="card">
+        <img src="phase1-acid-test/03-ccs-gamefeel-moodboard-1290x2796.png" alt="Gamefeel Moodboard">
+        <div class="label">CCS-G Game-Feel Moodboard</div>
+        <div class="desc">CCS-G palette + Wickly 3 variants + Cottage Workshop V2 + animation states + LEVEL UP burst + slogan.</div>
+      </div>
+      <div class="card">
+        <img src="phase1-acid-test/04-acid-test-before-after-1290x2796.png" alt="Before After">
+        <div class="label">Acid Test &middot; Before / After</div>
+        <div class="desc">V1 cream utility (top) vs CCS-G v2 jewel-tone game (bottom). BOSS PASS verdict.</div>
+      </div>
+    </div>
+
+    <footer>
+      Cozy Candle Studio &middot; Phase 2 V1.0 Reskin &middot; ASEN Games<br>
+      Designer delivery 2026-05-07T10:55 &middot; Apple Featuring T-21 (2026-05-29) submission-ready
+    </footer>
+  </div>
+</body>
+</html>
